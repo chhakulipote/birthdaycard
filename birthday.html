@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secret Birthday Surprise 🎁</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffe0f0, #fff0f5, #ffe6fa);
+      overflow: hidden;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* SPARKLE EFFECT */
+    .sparkle {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .sparkle span {
+      position: absolute;
+      display: block;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 10px white;
+      animation: sparkle 5s linear infinite;
+      border-radius: 50%;
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) scale(0.2);
+        opacity: 0;
+      }
+    }
+
+    .sparkle span:nth-child(odd) {
+      width: 8px;
+      height: 8px;
+    }
+
+    .sparkle span:nth-child(even) {
+      width: 4px;
+      height: 4px;
+    }
+
+    /* LOGIN BOX */
+    #login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 300px;
+      width: 90%;
+      z-index: 1;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #c2185b;
+    }
+
+    #error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    /* BIRTHDAY CARD */
+    #card {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #e91e63;
+      margin-top: 20px;
+    }
+
+    .image-frame {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px solid #e91e63;
+      margin-top: 20px;
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .message {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 20px;
+      color: #444;
+    }
+
+    .balloons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .balloon {
+      width: 60px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-25px); }
+      100% { transform: translateY(0); }
+    }
+
+    .code-block {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      max-width: 90%;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-style: italic;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .balloon {
+        width: 40px;
+      }
+
+      .code-block {
+        font-size: 0.9rem;
+      }
+
+      .image-frame {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SPARKLY BACKGROUND -->
+  <div class="sparkle">
+    <script>
+      for (let i = 0; i < 50; i++) {
+        const span = document.createElement('span');
+        span.style.left = Math.random() * 100 + "%";
+        span.style.bottom = Math.random() * 100 + "px";
+        span.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.currentScript.parentElement.appendChild(span);
+      }
+    </script>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="login-box">
+    <h2>🔐 Login to Unlock Your Surprise</h2>
+    <input type="text" id="username" placeholder="Enter your name" />
+    <input type="password" id="password" placeholder="Enter password" />
+    <button onclick="checkLogin()">Unlock 🎁</button>
+    <div id="error"></div>
+  </div>
+
+  <!-- BIRTHDAY CARD -->
+  <div id="card">
+    <h1>🎉 Happy Birthday Didi! 🎉</h1>
+
+    <div class="image-frame">
+      <img src="https://i.imgur.com/H1aSgGV.jpg" alt="Birthday Photo" />
+    </div>
+
+    <div class="message">
+      Hey Didi, wishing you a day filled with love, joy, and surprises.  
+      You’re the sunshine of my life and my forever best friend.  
+      Happy Birthday from your little Bacchu — Chhakuli 💖
+    </div>
+
+    <div class="code-block">
+      <p><span style="color: #a6e22e;">function</span> wish(name) &#123;</p>
+      <p>&nbsp;&nbsp;<span style="color: #f92672;">return</span> `Happy Birthday, ${name} 🎂🎈!`;</p>
+      <p>&#125;</p>
+      <p><span style="color: #66d9ef;">console</span>.log(wish("Didi"));</p>
+    </div>
+
+    <div class="balloons">
+      <img class="balloon" src="https://i.imgur.com/8VbYjzK.png" alt="Balloon">
+      <img class="balloon" src="https://i.imgur.com/8VbYjzK.png" alt="Balloon">
+      <img class="balloon" src="https://i.imgur.com/8VbYjzK.png" alt="Balloon">
+    </div>
+
+    <div class="footer">&lt;/&gt; Made with 💻 & 💝 by Chhakuli</div>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const username = document.getElementById("username").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
+
+      if (username === "favourite person" && password === "bacchu") {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("card").style.display = "flex";
+      } else {
+        document.getElementById("error").innerText = "❌ Wrong credentials! Try again.";
+      }
+    }
+  </script>
+
+</body>
+</html>
